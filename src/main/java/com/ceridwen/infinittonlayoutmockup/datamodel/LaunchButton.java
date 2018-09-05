@@ -9,7 +9,7 @@ package com.ceridwen.infinittonlayoutmockup.datamodel;
  *
  * @author Matthew.Dovey
  */
-public class ExecutableButton extends EmptyButton {
+public class LaunchButton extends AbstractButton {
   String executable;
 
   public String getExecutable() {
@@ -20,18 +20,18 @@ public class ExecutableButton extends EmptyButton {
     this.executable = executable;
   }
   
-  public ExecutableButton() {
+  public LaunchButton() {
     super();
     executable = "";
   }
   
-  public ExecutableButton(String name, String executable)
+  public LaunchButton(String name, String executable)
   {
     this.name = name;
     this.executable = executable;
   }
   
-  public ExecutableButton(EmptyButton button)
+  public LaunchButton(AbstractButton button)
   {
     name = button.getName();
     icon = button.getIcon();

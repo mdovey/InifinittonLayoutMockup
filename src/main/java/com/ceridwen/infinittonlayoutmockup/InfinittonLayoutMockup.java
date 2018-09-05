@@ -7,11 +7,14 @@ package com.ceridwen.infinittonlayoutmockup;
 
 import com.ceridwen.infinittonlayoutmockup.modelviews.LayoutComboBoxModel;
 import com.ceridwen.infinittonlayoutmockup.modelviews.LayoutListModel;
-import com.ceridwen.infinittonlayoutmockup.datamodel.EmptyButton;
-import com.ceridwen.infinittonlayoutmockup.datamodel.ExecutableButton;
+import com.ceridwen.infinittonlayoutmockup.datamodel.AbstractButton;
+import com.ceridwen.infinittonlayoutmockup.datamodel.BackButton;
+import com.ceridwen.infinittonlayoutmockup.datamodel.HotkeyButton;
+import com.ceridwen.infinittonlayoutmockup.datamodel.LaunchButton;
 import com.ceridwen.infinittonlayoutmockup.datamodel.Layout;
 import com.ceridwen.infinittonlayoutmockup.datamodel.LayoutButton;
 import com.ceridwen.infinittonlayoutmockup.datamodel.LayoutManager;
+import java.util.Stack;
 import java.util.UUID;
 import javax.swing.JButton;
 
@@ -64,12 +67,16 @@ public class InfinittonLayoutMockup extends javax.swing.JFrame {
         jButtonDetailsPanel = new javax.swing.JPanel();
         jButtonType = new javax.swing.JTabbedPane();
         jEmptyButton = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        jHotkey = new javax.swing.JTextField();
         jExecutableButton = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jExecutableName = new javax.swing.JTextField();
         jLayoutButton = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLayoutCombo = new javax.swing.JComboBox<>();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jButtonName = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -91,7 +98,7 @@ public class InfinittonLayoutMockup extends javax.swing.JFrame {
         aboutMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1200, 400));
+        setPreferredSize(new java.awt.Dimension(1350, 400));
         setResizable(false);
 
         jLayoutsPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -440,18 +447,32 @@ public class InfinittonLayoutMockup extends javax.swing.JFrame {
             }
         });
 
+        jLabel8.setText("Hotkey");
+
+        jHotkey.setText("jTextField1");
+
         javax.swing.GroupLayout jEmptyButtonLayout = new javax.swing.GroupLayout(jEmptyButton);
         jEmptyButton.setLayout(jEmptyButtonLayout);
         jEmptyButtonLayout.setHorizontalGroup(
             jEmptyButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 581, Short.MAX_VALUE)
+            .addGroup(jEmptyButtonLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jHotkey, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jEmptyButtonLayout.setVerticalGroup(
             jEmptyButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 182, Short.MAX_VALUE)
+            .addGroup(jEmptyButtonLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jEmptyButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jHotkey, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(147, Short.MAX_VALUE))
         );
 
-        jButtonType.addTab("Blank", jEmptyButton);
+        jButtonType.addTab("Hotkey", jEmptyButton);
 
         jLabel4.setText("Executable:");
 
@@ -469,7 +490,7 @@ public class InfinittonLayoutMockup extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jExecutableName, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
+                .addComponent(jExecutableName, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jExecutableButtonLayout.setVerticalGroup(
@@ -482,7 +503,7 @@ public class InfinittonLayoutMockup extends javax.swing.JFrame {
                 .addContainerGap(147, Short.MAX_VALUE))
         );
 
-        jButtonType.addTab("Executable", jExecutableButton);
+        jButtonType.addTab("Launch", jExecutableButton);
 
         jLabel5.setText("Layout:");
 
@@ -501,7 +522,7 @@ public class InfinittonLayoutMockup extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLayoutCombo, 0, 510, Short.MAX_VALUE)
+                .addComponent(jLayoutCombo, 0, 356, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jLayoutButtonLayout.setVerticalGroup(
@@ -515,6 +536,27 @@ public class InfinittonLayoutMockup extends javax.swing.JFrame {
         );
 
         jButtonType.addTab("Layout", jLayoutButton);
+
+        jLabel7.setText("Return to previously active layout");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel7)
+                .addContainerGap(226, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel7)
+                .addContainerGap(153, Short.MAX_VALUE))
+        );
+
+        jButtonType.addTab("Back", jPanel1);
 
         jLabel1.setText("Button Name:");
 
@@ -746,21 +788,23 @@ public class InfinittonLayoutMockup extends javax.swing.JFrame {
     }
     
     if (button_a > 0 && button_b > 0) {
-      EmptyButton button = layout.getButton(button_a, button_b);
+      AbstractButton button = layout.getButton(button_a, button_b);
 
       switch (jButtonType.getSelectedIndex()) {
         case 0:
-          if (button instanceof EmptyButton) {          
+          if (button instanceof HotkeyButton) {          
           } else {
-            layout.setButton(button_a, button_b, new EmptyButton(button));
+            button = new HotkeyButton(button);  
+            layout.setButton(button_a, button_b, button);
+            jHotkey.setText(((HotkeyButton)button).getHotkey());
           }
           break;
         case 1:
-          if (button instanceof ExecutableButton) {          
+          if (button instanceof LaunchButton) {          
           } else {
-            button = new ExecutableButton(button);
+            button = new LaunchButton(button);
             layout.setButton(button_a, button_b, button);
-            jExecutableName.setText(((ExecutableButton)button).getExecutable());
+            jExecutableName.setText(((LaunchButton)button).getExecutable());
           }
           break;
         case 2:
@@ -769,6 +813,13 @@ public class InfinittonLayoutMockup extends javax.swing.JFrame {
             button = new LayoutButton(button);
             layout.setButton(button_a, button_b, button);
             jLayoutCombo.setSelectedIndex(LayoutManager.getLayoutManager().getLayoutIndex(((LayoutButton)button).getLayoutUid()));
+          }
+          break;
+        case 3:
+          if (button instanceof BackButton) {          
+          } else {
+            button = new BackButton(button);
+            layout.setButton(button_a, button_b, button);
           }
           break;
       }
@@ -784,10 +835,10 @@ public class InfinittonLayoutMockup extends javax.swing.JFrame {
       return;
     }
     
-    EmptyButton button = layout.getButton(button_a, button_b);
+    AbstractButton button = layout.getButton(button_a, button_b);
     
-    if (button instanceof ExecutableButton) {          
-      ((ExecutableButton)button).setExecutable(jExecutableName.getText());
+    if (button instanceof LaunchButton) {          
+      ((LaunchButton)button).setExecutable(jExecutableName.getText());
     }
   }//GEN-LAST:event_jExecutableNameActionPerformed
 
@@ -799,7 +850,7 @@ public class InfinittonLayoutMockup extends javax.swing.JFrame {
       return;
     }
     
-    EmptyButton button = layout.getButton(button_a, button_b);
+    AbstractButton button = layout.getButton(button_a, button_b);
     
     if (button == null) {
       return;
@@ -911,17 +962,21 @@ public class InfinittonLayoutMockup extends javax.swing.JFrame {
     private javax.swing.JPanel jEmptyButton;
     private javax.swing.JPanel jExecutableButton;
     private javax.swing.JTextField jExecutableName;
+    private javax.swing.JTextField jHotkey;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jLayoutButton;
     private javax.swing.JComboBox<String> jLayoutCombo;
     private javax.swing.JList<String> jLayoutList;
     private javax.swing.JTextField jLayoutName;
     private javax.swing.JPanel jLayoutsPanel;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JMenuBar menuBar;
@@ -931,6 +986,17 @@ public class InfinittonLayoutMockup extends javax.swing.JFrame {
     private javax.swing.JMenuItem saveMenuItem;
     // End of variables declaration//GEN-END:variables
 
+  boolean canClearBreadcrumbs(Layout layout) {
+      for (int a = 1; a <= 5; a++) {
+          for (int b = 1; b <= 3; b++) {            
+              if (layout.getButton(a, b) instanceof BackButton) {
+                  return false;
+              }  
+          }
+      }
+      return true;
+  }    
+    
   private void UpdateButtonDisplay(Layout layout) {
     jLayoutName.setText(layout.getName());
     
@@ -949,6 +1015,10 @@ public class InfinittonLayoutMockup extends javax.swing.JFrame {
     jButton51.setText(layout.getButton(5,1).getName());
     jButton52.setText(layout.getButton(5,2).getName());
     jButton53.setText(layout.getButton(5,3).getName());
+    
+    if (canClearBreadcrumbs(layout)) {
+        layoutBreadcrumbs.clear();
+    }
     
     UpdateButtonDetails(layout, 0, 0, null);
   }
@@ -981,24 +1051,31 @@ public class InfinittonLayoutMockup extends javax.swing.JFrame {
     buttonButton = jButton;
     
     if (button_a > 0 && button_b > 0) {
-      EmptyButton button = layout.getButton(button_a, button_b);
+      AbstractButton button = layout.getButton(button_a, button_b);
     
       jButtonName.setText(button.getName());
       jButtonIcon.setText(button.getIcon());
 
-      if (button instanceof ExecutableButton) {
+      if (button instanceof LaunchButton) {
         jButtonType.setSelectedIndex(1);
-        jExecutableName.setText(((ExecutableButton)button).getExecutable());
+        jExecutableName.setText(((LaunchButton)button).getExecutable());
       } else if (button instanceof LayoutButton) {
         jButtonType.setSelectedIndex(2);
         jLayoutCombo.setSelectedIndex(LayoutManager.getLayoutManager().getLayoutIndex(((LayoutButton)button).getLayoutUid()));
+      } else if (button instanceof BackButton) {
+        jButtonType.setSelectedIndex(3);
+      } else if (button instanceof HotkeyButton) {
+        jButtonType.setSelectedIndex(0);
+        jHotkey.setText(((HotkeyButton)button).getHotkey());
       } else {
-        jButtonType.setSelectedIndex(0);     
+        jButtonType.setSelectedIndex(0);
+        jHotkey.setText("");
       }
     } else {
       jButtonName.setText("");
       jButtonIcon.setText("");
       jButtonType.setSelectedIndex(0);     
+      jHotkey.setText("");
     }
     
     jButtonDetailsPanel.updateUI();
@@ -1017,7 +1094,7 @@ public class InfinittonLayoutMockup extends javax.swing.JFrame {
     if (buttonButton == null) {
       return;
     }
-    EmptyButton button = layout.getButton(button_a, button_b);
+    AbstractButton button = layout.getButton(button_a, button_b);
 
     button.setName(name);
     button.setIcon(icon);
@@ -1025,20 +1102,32 @@ public class InfinittonLayoutMockup extends javax.swing.JFrame {
     buttonButton.updateUI();
   }
 
+  Stack<UUID> layoutBreadcrumbs = new Stack<>();
+  
   private void SwitchLayoutByButton(int index, int a, int b) {
     Layout layout = LayoutManager.getLayoutManager().getLayoutAt(index);
     
-    EmptyButton button = layout.getButton(a, b);
+    AbstractButton button = layout.getButton(a, b);
     
+    UUID uid = null;
     if (button instanceof LayoutButton) {
-      UUID uid = ((LayoutButton) button).getLayoutUid();
-      if (uid != null) {
-        int newIndex = LayoutManager.getLayoutManager().getLayoutIndex(uid);
-        jLayoutList.setSelectedIndex(newIndex);
-        jLayoutList.updateUI();
-      }
+      uid = ((LayoutButton) button).getLayoutUid();
     }
-    
+
+    if (button instanceof BackButton) {
+        uid = layoutBreadcrumbs.pop();
+    }
+
+    if (uid != null) {
+        int newIndex = LayoutManager.getLayoutManager().getLayoutIndex(uid);
+        if (newIndex >= 0) {
+            if (!(button instanceof BackButton) && (layoutBreadcrumbs.isEmpty() || layoutBreadcrumbs.peek() != layout.getUuid())) {
+                layoutBreadcrumbs.push(layout.getUuid());
+            }
+            jLayoutList.setSelectedIndex(newIndex);
+            jLayoutList.updateUI();
+        }
+    }
     
   }
 

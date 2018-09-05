@@ -38,16 +38,12 @@ public class LayoutComboBoxModel extends AbstractListModel<String> implements Co
     
     @Override
     public int getSize() {
-        return manager.getLayoutsCount() + 1;
+        return manager.getLayoutsCount();
     }
 
     @Override
     public String getElementAt(int index) {
-        if (index != manager.getLayoutsCount()) {
-            return manager.getLayoutAt(index).getName();
-        } else {
-            return "<Back>";
-        }
+        return manager.getLayoutAt(index).getName();
     }
 
   String selected = null;

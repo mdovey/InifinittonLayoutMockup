@@ -11,16 +11,16 @@ import javax.swing.Icon;
  *
  * @author Matthew.Dovey
  */
-public class EmptyButton {
+abstract public class AbstractButton {
   String name;
 
-  public EmptyButton()
+  public AbstractButton()
   {
     name = "";
     icon = "";
   }
   
-  public EmptyButton(EmptyButton button)
+  public AbstractButton(AbstractButton button)
   {
     name = button.getName();
     icon = button.getIcon();

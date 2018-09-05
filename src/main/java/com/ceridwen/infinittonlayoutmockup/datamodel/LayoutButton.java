@@ -11,14 +11,14 @@ import java.util.UUID;
  *
  * @author Matthew.Dovey
  */
-public class LayoutButton extends EmptyButton {
+public class LayoutButton extends AbstractButton {
   UUID layoutUid;
 
   public LayoutButton() {
     super();
   }
 
-  public LayoutButton(EmptyButton button)
+  public LayoutButton(AbstractButton button)
   {
     name = button.getName();
     icon = button.getIcon();

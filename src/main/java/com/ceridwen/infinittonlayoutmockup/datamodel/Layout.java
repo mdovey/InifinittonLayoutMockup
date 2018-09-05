@@ -22,7 +22,7 @@ public class Layout {
     
     for (int a=1; a <= 5; a++) {
       for (int b = 1; b <= 3; b++) {
-        setButton(a, b, new EmptyButton());
+        setButton(a, b, new HotkeyButton());
       }
     }
   }
@@ -38,9 +38,9 @@ public class Layout {
   public void setName(String name) {
     this.name = name;
   }
-  EmptyButton[][] buttons = new EmptyButton[5][3];
+  AbstractButton[][] buttons = new AbstractButton[5][3];
   
-  public void setButton(int a, int b, EmptyButton button)
+  public void setButton(int a, int b, AbstractButton button)
   {
     /** TODO: check bounds
      * 
@@ -49,7 +49,7 @@ public class Layout {
     buttons[a-1][b-1] = button;    
   }
   
-  public EmptyButton getButton(int a, int b)
+  public AbstractButton getButton(int a, int b)
   {
     /** TODO: check bounds
      * 
