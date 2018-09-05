@@ -8,6 +8,7 @@ package com.ceridwen.infinittonlayoutmockup.datamodel;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 import javax.swing.event.ListDataEvent;
@@ -128,8 +129,7 @@ public class LayoutManager implements Serializable {
     folder1.setButton(3, 3, new HotkeyButton("F", "F"));
 
     folder2.setButton(1, 1, new BackButton("Back"));
-    folder2.setButton(1, 2, new LayoutButton("Folder 3", folder3));
-    folder2.setButton(1, 3, new LayoutButton("Home", root));
+    folder2.setButton(1, 3, new LayoutButton("Root", root));
     folder2.setButton(2, 1, new LaunchButton("App 7", "App 7"));
     folder2.setButton(2, 2, new LaunchButton("App 8", "App 8"));
     folder2.setButton(2, 3, new LaunchButton("App 9", "App 9"));
@@ -138,7 +138,6 @@ public class LayoutManager implements Serializable {
     folder2.setButton(3, 3, new HotkeyButton("I", "I"));
 
     folder3.setButton(1, 1, new BackButton("Back"));
-    folder3.setButton(1, 3, new LayoutButton("Home", root));
     folder3.setButton(2, 1, new LaunchButton("App 10", "App 10"));
     folder3.setButton(2, 2, new LaunchButton("App 11", "App 11"));
     folder3.setButton(2, 3, new LaunchButton("App 12", "App 12"));
@@ -153,4 +152,8 @@ public class LayoutManager implements Serializable {
     manager.addLayout(folder2);
     manager.addLayout(folder3);
   }
+
+    public Collection<Layout> getLayouts() {
+        return layouts.values();
+    }
 }

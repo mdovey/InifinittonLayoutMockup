@@ -17,6 +17,12 @@ import com.ceridwen.infinittonlayoutmockup.datamodel.LayoutManager;
 import java.util.Stack;
 import java.util.UUID;
 import javax.swing.JButton;
+import org.graphstream.graph.Edge;
+import org.graphstream.graph.Graph;
+import org.graphstream.graph.Node;
+import org.graphstream.graph.implementations.MultiGraph;
+import org.graphstream.graph.implementations.SingleGraph;
+import org.graphstream.ui.view.Viewer;
 
 /**
  *
@@ -46,6 +52,7 @@ public class InfinittonLayoutMockup extends javax.swing.JFrame {
         jLayoutList = new javax.swing.JList<>();
         jButtonAdd = new javax.swing.JButton();
         jButtonDelete = new javax.swing.JButton();
+        jViewGraphButton = new javax.swing.JButton();
         jButtonsPanel = new javax.swing.JPanel();
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
@@ -127,6 +134,13 @@ public class InfinittonLayoutMockup extends javax.swing.JFrame {
             }
         });
 
+        jViewGraphButton.setText("View Graph");
+        jViewGraphButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jViewGraphButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jLayoutsPanelLayout = new javax.swing.GroupLayout(jLayoutsPanel);
         jLayoutsPanel.setLayout(jLayoutsPanelLayout);
         jLayoutsPanelLayout.setHorizontalGroup(
@@ -139,7 +153,8 @@ public class InfinittonLayoutMockup extends javax.swing.JFrame {
                         .addComponent(jButtonAdd)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonDelete)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jViewGraphButton)))
                 .addContainerGap())
         );
         jLayoutsPanelLayout.setVerticalGroup(
@@ -150,7 +165,8 @@ public class InfinittonLayoutMockup extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jLayoutsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAdd)
-                    .addComponent(jButtonDelete))
+                    .addComponent(jButtonDelete)
+                    .addComponent(jViewGraphButton))
                 .addContainerGap())
         );
 
@@ -450,6 +466,11 @@ public class InfinittonLayoutMockup extends javax.swing.JFrame {
         jLabel8.setText("Hotkey");
 
         jHotkey.setText("jTextField1");
+        jHotkey.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jHotkeyActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jEmptyButtonLayout = new javax.swing.GroupLayout(jEmptyButton);
         jEmptyButton.setLayout(jEmptyButtonLayout);
@@ -737,6 +758,8 @@ public class InfinittonLayoutMockup extends javax.swing.JFrame {
     
     Layout layout = LayoutManager.getLayoutManager().getLayoutAt(index);
     
+    layoutBreadcrumbs.clear();
+    
     UpdateButtonDisplay(layout); 
   }//GEN-LAST:event_jLayoutListValueChanged
 
@@ -892,6 +915,56 @@ public class InfinittonLayoutMockup extends javax.swing.JFrame {
     }
   }//GEN-LAST:event_jButtonMouseClicked
 
+    private void jViewGraphButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jViewGraphButtonActionPerformed
+        System.setProperty("org.graphstream.ui.renderer", "org.graphstream.ui.j2dviewer.J2DGraphRenderer");
+    
+        Graph graph = new MultiGraph("Tutorial 1");
+        
+        graph.addAttribute("ui.quality");
+        graph.addAttribute("ui.antialias");
+        graph.addAttribute("ui.stylesheet", "edge {text-size: 16; text-color: red; } node {text-size: 16; text-color: blue; text-alignment: at-right; }");
+        
+        LayoutManager manager = LayoutManager.getLayoutManager();
+        
+        for (Layout layout: manager.getLayouts()) {
+            Node node = graph.addNode(layout.getUuid().toString());
+            node.addAttribute("ui.label", layout.getName());
+        }
+        
+        for (Layout layout: manager.getLayouts()) {
+            for (int a = 1; a <= 5; a++) {
+                for (int b = 1; b <= 3; b++) {
+                    AbstractButton button = layout.getButton(a, b);
+                    if (button instanceof LayoutButton) {
+                        Edge edge = graph.addEdge(layout.getUuid().toString() + ((LayoutButton)button).getLayoutUid().toString(), layout.getUuid().toString(), ((LayoutButton)button).getLayoutUid().toString(), true);
+                        edge.addAttribute("ui.label", button.getName());
+                    }                 
+                }
+            }
+        }
+        
+        Viewer viewer = graph.display(true);
+        viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.CLOSE_VIEWER);
+
+    }//GEN-LAST:event_jViewGraphButtonActionPerformed
+
+    private void jHotkeyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jHotkeyActionPerformed
+
+        int index = jLayoutList.getSelectedIndex();
+
+        Layout layout = LayoutManager.getLayoutManager().getLayoutAt(index);
+
+        if (layout == null) {
+          return;
+        }
+
+        AbstractButton button = layout.getButton(button_a, button_b);
+
+        if (button instanceof HotkeyButton) {          
+          ((HotkeyButton)button).setHotkey(jHotkey.getText());
+        }
+    }//GEN-LAST:event_jHotkeyActionPerformed
+
   /**
    * @param args the command line arguments
    */
@@ -979,6 +1052,7 @@ public class InfinittonLayoutMockup extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jViewGraphButton;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
     private javax.swing.JMenuItem pasteMenuItem;
@@ -1115,6 +1189,7 @@ public class InfinittonLayoutMockup extends javax.swing.JFrame {
     }
 
     if (button instanceof BackButton) {
+        if (!layoutBreadcrumbs.isEmpty())
         uid = layoutBreadcrumbs.pop();
     }
 
