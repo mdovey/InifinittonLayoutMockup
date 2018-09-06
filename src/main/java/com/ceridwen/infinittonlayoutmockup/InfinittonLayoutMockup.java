@@ -758,8 +758,6 @@ public class InfinittonLayoutMockup extends javax.swing.JFrame {
     
     Layout layout = LayoutManager.getLayoutManager().getLayoutAt(index);
     
-    layoutBreadcrumbs.clear();
-    
     UpdateButtonDisplay(layout); 
   }//GEN-LAST:event_jLayoutListValueChanged
 
