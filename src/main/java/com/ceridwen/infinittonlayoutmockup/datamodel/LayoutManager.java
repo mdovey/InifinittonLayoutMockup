@@ -108,6 +108,9 @@ public class LayoutManager implements Serializable {
     Layout folder1 = new Layout("Folder 1");
     Layout folder2 = new Layout("Folder 2");
     Layout folder3 = new Layout("Folder 3");
+    Layout tab1 = new Layout("Tab 1");
+    Layout tab2 = new Layout("Tab 2");
+    Layout tab3 = new Layout("Tab 3");
     
     root.setButton(1, 2, new LayoutButton("Folder 1", folder1));
     root.setButton(1, 3, new LayoutButton("Folder 2", folder2));
@@ -129,6 +132,7 @@ public class LayoutManager implements Serializable {
     folder1.setButton(3, 3, new HotkeyButton("F", "F"));
 
     folder2.setButton(1, 1, new BackButton("Back"));
+    folder2.setButton(1, 2, new LayoutButton("Tab 1", tab1));
     folder2.setButton(1, 3, new LayoutButton("Root", root));
     folder2.setButton(2, 1, new LaunchButton("App 7", "App 7"));
     folder2.setButton(2, 2, new LaunchButton("App 8", "App 8"));
@@ -145,12 +149,44 @@ public class LayoutManager implements Serializable {
     folder3.setButton(3, 2, new HotkeyButton("K", "K"));
     folder3.setButton(3, 3, new HotkeyButton("L", "L"));
 
+    tab1.setButton(1, 1, new LayoutButton("Tab 1", tab1));
+    tab1.setButton(1, 2, new LayoutButton("Tab 2", tab2));
+    tab1.setButton(1, 3, new LayoutButton("Tab 3", tab3));
+    tab1.setButton(2, 1, new LaunchButton("App 13", "App 13"));
+    tab1.setButton(2, 2, new LaunchButton("App 14", "App 14"));
+    tab1.setButton(2, 3, new LaunchButton("App 15", "App 15"));
+    tab1.setButton(3, 1, new HotkeyButton("M", "M"));
+    tab1.setButton(3, 2, new HotkeyButton("N", "N"));
+    tab1.setButton(3, 3, new HotkeyButton("O", "O"));    
+  
+    tab2.setButton(1, 1, new LayoutButton("Tab 1", tab1));
+    tab2.setButton(1, 2, new LayoutButton("Tab 2", tab2));
+    tab2.setButton(1, 3, new LayoutButton("Tab 3", tab3));
+    tab2.setButton(2, 1, new LaunchButton("App 16", "App 16"));
+    tab2.setButton(2, 2, new LaunchButton("App 17", "App 17"));
+    tab2.setButton(2, 3, new LaunchButton("App 18", "App 18"));
+    tab2.setButton(3, 1, new HotkeyButton("P", "P"));
+    tab2.setButton(3, 2, new HotkeyButton("Q", "Q"));
+    tab2.setButton(3, 3, new HotkeyButton("R", "R"));    
+
+    tab3.setButton(1, 1, new LayoutButton("Tab 1", tab1));
+    tab3.setButton(1, 2, new LayoutButton("Tab 2", tab2));
+    tab3.setButton(1, 3, new LayoutButton("Tab 3", tab3));
+    tab3.setButton(2, 1, new LaunchButton("App 19", "App 19"));
+    tab3.setButton(2, 2, new LaunchButton("App 20", "App 20"));
+    tab3.setButton(2, 3, new LaunchButton("App 21", "App 21"));
+    tab3.setButton(3, 1, new HotkeyButton("S", "S"));
+    tab3.setButton(3, 2, new HotkeyButton("T", "T"));
+    tab3.setButton(3, 3, new HotkeyButton("U", "U"));        
     
-    LayoutManager manager = getLayoutManager();
-    manager.addLayout(root);
-    manager.addLayout(folder1);
-    manager.addLayout(folder2);
-    manager.addLayout(folder3);
+    LayoutManager mgr = getLayoutManager();
+    mgr.addLayout(root);
+    mgr.addLayout(folder1);
+    mgr.addLayout(folder2);
+    mgr.addLayout(folder3);
+    mgr.addLayout(tab1);
+    mgr.addLayout(tab2);
+    mgr.addLayout(tab3);
   }
 
     public Collection<Layout> getLayouts() {
